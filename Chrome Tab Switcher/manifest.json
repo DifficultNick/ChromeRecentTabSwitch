@@ -1,20 +1,24 @@
 {
 	"manifest_version": 3,
 	"name": "Chrome Tab Switcher",
-	"description": "Switch to most recently used tab with a hotkey.",
-	"version": "1.0",
+	"description": "Switch to most recently used tab with a hotkey",
+	"version": "1.4",
 	"permissions": [
 		"tabs"
 	],
 	"background": {
 		"service_worker": "background.js"
 	},
-	"commands": {
-		"switch-to-last-used-tab": {
-			"suggested_key": {
-				"default": "Alt+Q"
-			},
-			"description": "Switch to last used tab"
+	"content_scripts": [
+		{
+			"matches": [
+				"http://*/*",
+				"https://*/*"
+			],
+			"js": [
+				"content.js"
+			],
+			"run_at": "document_start"
 		}
-	}
+	]
 }

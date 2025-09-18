@@ -13,7 +13,7 @@ hotkeyScript :=
 (
 '#Requires AutoHotkey v2.0+
 #HotIf WinActive("ahk_exe chrome.exe")
-^Tab::Send("!q")
+^Tab::Send("^`")   ; Ctrl+Tab → Ctrl+~
 #HotIf'
 )
 
@@ -29,7 +29,7 @@ FileAppend(hotkeyScript, scriptPath)
 if FileExist(shortcutPath)
     FileDelete(shortcutPath)
 
-; Команда создания ярлыка (без индексов в Format())
+; Команда создания ярлыка в автозагрузку
 RunWaitCmd := Format('"{0}" /CreateShortcut "{1}"', A_AhkPath, shortcutPath)
 RunWait(A_ComSpec ' /c ' RunWaitCmd, , "Hide")
 
@@ -40,12 +40,8 @@ MsgBox "
 (
 Установка завершена!
 
-Ctrl + Tab в Chrome теперь будет заменён на Alt + Q.
+Ctrl + Tab в Chrome теперь будет заменён на Ctrl + ~
 
-Убедись, что расширению назначено сочетание Alt + Q
-посмотреть сочетания можно тут:
-chrome://extensions/shortcuts
-
-Скрипт для AutoHotKey запущен сейчас и добавлен в автозагрузку.
+Скрипт запущен прямо сейчас и добавлен в автозагрузку.
 )"
 ExitApp()
